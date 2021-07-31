@@ -1,28 +1,33 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.3
 import PackageDescription
 
 let package = Package(
     name: "IceCream",
     platforms: [
-        .macOS(.v10_12), .iOS(.v11), .tvOS(.v10), .watchOS(.v3)
+        .macOS(.v10_12), .iOS(.v11), .tvOS(.v11), .watchOS(.v4)
     ],
     products: [
         .library(
             name: "IceCream",
-            targets: ["IceCream"]),
+            targets: ["IceCream"]
+        )
     ],
     dependencies: [
         .package(
-            url: "https://github.com/realm/realm-cocoa", 
-            from: "5.4.4"
+            name: "Realm",
+            url: "https://github.com/realm/realm-cocoa",
+            .upToNextMajor(from: "10.8.0")
         )
     ],
     targets: [
         .target(
             name: "IceCream",
-            dependencies: ["RealmSwift", "Realm"],
-            path: "IceCream",
-            sources: ["Classes"])
+            dependencies: [
+                "Realm",
+                .product(name: "RealmSwift", package: "Realm")
+            ],
+            path: "IceCream/Classes"
+        )
     ],
     swiftLanguageVersions: [.v5]
 )
