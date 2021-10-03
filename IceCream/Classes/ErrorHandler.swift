@@ -16,7 +16,7 @@ struct ErrorHandler {
     struct Constant {
         /// CloudKit says maximum number of items in a single request is 400.
         /// So I think 300 should be fine by them.
-        static let chunkSize = 300 
+        static let chunkSize = 150 
     }
     
     static let shared = ErrorHandler()
